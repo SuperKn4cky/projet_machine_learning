@@ -1,0 +1,42 @@
+# Fichiers générés par Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Environnements virtuels
+.env
+.venv/
+venv/
+env/
+
+# Fichiers de données
+data/
+*.csv
+*.pkl
+*.json
+
+# Fichiers de logs
+logs/
+*.log
+
+# Fichiers de sortie
+outputs/
+
+# Fichiers de configuration sensible
+config.ini
+secrets.py
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers IDE
+.idea/
+.vscode/
+
+# Fichiers temporaires
+*.tmp
+*.bak
