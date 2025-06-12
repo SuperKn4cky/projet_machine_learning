@@ -16,7 +16,7 @@ pip install -r requirements.txt
 ## Exécution du pipeline complet
 
 ```bash
-python main.py --step all --years 2023
+python src/main.py --step all --years 2023
 ```
 
 ### Options disponibles :

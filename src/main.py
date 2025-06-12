@@ -266,6 +266,17 @@ class AccidentAnalysisProject:
         # Rapport final
         self.generate_final_report()
         
+        # Génération du rapport PDF
+        try:
+            from generate_report import generate_pdf_report
+            pdf_path = self.output_dir / 'rapport_accidents.pdf'
+            generate_pdf_report(self.df_usagers, self.df_accidents, self.ml_results, str(pdf_path))
+            self.logger.info(f"📄 Rapport PDF généré: {pdf_path}")
+        except ImportError as e:
+            self.logger.error(f"❌ Erreur d'import pour le rapport PDF: {e}")
+        except Exception as e:
+            self.logger.error(f"❌ Erreur lors de la génération du rapport PDF: {e}")
+        
         # Bilan
         duration = datetime.now() - start_time
         self.logger.info("\n" + "🎉" + "="*58 + "🎉")
@@ -274,9 +285,10 @@ class AccidentAnalysisProject:
         self.logger.info(f"⏱️  Durée totale: {duration}")
         self.logger.info("📁 Fichiers générés:")
         self.logger.info("   - data/accidents_clean.csv")
-        self.logger.info("   - data/accidents_by_event.csv") 
+        self.logger.info("   - data/accidents_by_event.csv")
         self.logger.info("   - best_accident_model.pkl")
         self.logger.info("   - outputs/rapport_final.md")
+        self.logger.info(f"   - outputs/rapport_accidents.pdf")
         self.logger.info("   - logs/accident_analysis_*.log")
         
         return True
