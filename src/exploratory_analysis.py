@@ -8,6 +8,7 @@ from plotly.subplots import make_subplots
 import folium
 from folium.plugins import HeatMap
 import warnings
+import os
 warnings.filterwarnings('ignore')
 
 # Configuration des graphiques
@@ -163,6 +164,8 @@ class AccidentExplorer:
             ax4.set_xticklabels(mois_names)
         
         plt.tight_layout()
+        os.makedirs("outputs", exist_ok=True)
+        plt.savefig("outputs/eda_temporal_analysis.png")
         plt.show()
 
     def conditions_analysis(self):
@@ -248,6 +251,8 @@ class AccidentExplorer:
             ax4.grid(True, alpha=0.3)
         
         plt.tight_layout()
+        os.makedirs("outputs", exist_ok=True)
+        plt.savefig("outputs/eda_conditions_analysis.png")
         plt.show()
 
     def geographical_analysis(self):
@@ -340,6 +345,8 @@ class AccidentExplorer:
                 ax2.grid(True, alpha=0.3)
             
             plt.tight_layout()
+            os.makedirs("outputs", exist_ok=True)
+            plt.savefig("outputs/eda_age_analysis.png")
             plt.show()
 
     def correlation_analysis(self):
@@ -362,6 +369,8 @@ class AccidentExplorer:
                        square=True, linewidths=0.5, cbar_kws={"shrink": .8})
             plt.title('Matrice de Corrélation des Variables')
             plt.tight_layout()
+            os.makedirs("outputs", exist_ok=True)
+            plt.savefig("outputs/eda_correlation_analysis.png")
             plt.show()
 
     def interactive_dashboard(self):
@@ -385,6 +394,7 @@ class AccidentExplorer:
                           title='Évolution Mensuelle des Accidents',
                           labels={'value': 'Nombre d\'accidents', 'variable': 'Type'})
             fig1.update_layout(height=500)
+            fig1.write_image("outputs/eda_dashboard_evolution.png")
             fig1.show()
         
         # 2. Répartition par conditions avec Plotly
@@ -395,6 +405,7 @@ class AccidentExplorer:
                          title='Taux de Mortalité par Condition Météorologique',
                          labels={'mean': 'Taux de mortalité', 'meteo_lib': 'Conditions météo'})
             fig2.update_layout(height=500, xaxis_tickangle=-45)
+            fig2.write_image("outputs/eda_dashboard_meteo.png")
             fig2.show()
 
     def generate_summary_report(self):

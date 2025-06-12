@@ -16,6 +16,7 @@ from imblearn.under_sampling import RandomUnderSampler
 from imblearn.combine import SMOTEENN
 import joblib
 import warnings
+import os
 warnings.filterwarnings('ignore')
 
 class AccidentMLModeler:
@@ -394,6 +395,8 @@ class AccidentMLModeler:
             ax4.set_title('Feature Importance')
         
         plt.tight_layout()
+        os.makedirs("outputs", exist_ok=True)
+        plt.savefig("outputs/ml_plot_model_comparison.png")
         plt.show()
 
     def analyze_feature_importance(self):
@@ -439,6 +442,8 @@ class AccidentMLModeler:
                 bar.set_color(self.colors['primary'])
         
         plt.tight_layout()
+        os.makedirs("outputs", exist_ok=True)
+        plt.savefig("outputs/ml_feature_importance.png")
         plt.show()
         
         return feature_df
@@ -494,6 +499,10 @@ class AccidentMLModeler:
         plt.title('Impact du Seuil de Classification')
         plt.legend()
         plt.grid(True, alpha=0.3)
+        
+        plt.tight_layout()
+        os.makedirs("outputs", exist_ok=True)
+        plt.savefig("outputs/ml_error_analysis.png")
         plt.show()
         
         # Seuil optimal
